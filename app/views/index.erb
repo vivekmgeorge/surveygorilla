@@ -1,8 +1,10 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
-
-  <% for user in @users %>
-    <%= user.name %>
+  <h1>Welcome to Survey Gorilla!</h1>
+  <% @survey.each do |survey| %>
+  <p><a href= "/survey/<%= survey.id %>"> <%= survey.name %></a></p>
   <% end %>
+
+<form action= "/survey/new" method= "get">
+  <input type="submit" value= "Create New Survey">
+ </form>
 </div>
