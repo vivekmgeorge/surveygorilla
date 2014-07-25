@@ -3,7 +3,7 @@ get '/' do
   erb :index
 end
 
-post "/survey" do
+post "/surveys" do
   @info = params[:survey]
   survey = Survey.create(name: @info[:title])
   question = Question.create(question: @info[:question], choice1: @info[:choice1],
@@ -12,5 +12,9 @@ post "/survey" do
   redirect '/'
 end
 
+get '/surveys/:id' do
+  @survey = Survey.find(params[:id])
 
+  erb :"surveys/show"
+end
 
