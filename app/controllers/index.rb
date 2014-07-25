@@ -1,5 +1,6 @@
 get '/' do
   @users = User.all
+  @survey = Survey.all
   erb :index
 end
 
