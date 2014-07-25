@@ -1,0 +1,18 @@
+<h1>Taking <%= @survey.name %></h1>
+
+  <form action="/results" method="post" class='pussy'>
+  <% @survey.questions.each do |question| %>
+  <strong>Question:</strong> <%= question.question %>
+
+    <select name="question[<%= question.id %>]">
+      <option value="<%= question.choice1 %>"><%= question.choice1 %></option>
+      <option value="<%= question.choice2 %>"><%= question.choice2 %></option>
+      <option value="<%= question.choice3 %>"><%= question.choice3 %></option>
+    </select>
+  <br><br>
+
+  <% end %>
+
+  <input type="submit" value="submit it" class='resultButton'>
+  </form>
+
