@@ -1,7 +1,12 @@
 <div class="container">
+
   <h1>Welcome to Survey Gorilla!</h1>
   <% @survey.each do |survey| %>
-  <p><a href= "/survey/<%= survey.id %>"> <%= survey.name %></a></p>
+    <% if current_user %>
+      <p><a href= "/survey/<%= survey.id %>"> <%= survey.name %></a></p>
+    <% else %>
+       <p><a href= "/user/login_signup"> <%= survey.name %></a></p>
+    <% end %>
   <% end %>
 
 <% if current_user %>

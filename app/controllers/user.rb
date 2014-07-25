@@ -28,7 +28,7 @@ end
 
 # logout
 get '/user/logout' do
-  session[:user_id] = nil
+  session.clear
   redirect '/'
 end
 # take user to thier homepage
@@ -44,3 +44,8 @@ get "/user/home" do
   @surveys_taken.uniq!
   erb :"user/home"
 end
+
+# delete '/survey/:id' do
+#   Survey.find(params[:id]).destroy
+#   redirect "/user/home"
+# end
