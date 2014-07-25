@@ -4,8 +4,10 @@
   <p><a href= "/survey/<%= survey.id %>"> <%= survey.name %></a></p>
   <% end %>
 
-<form action= "/survey/new" method= "get">
-  <input type="submit" value= "Create New Survey">
- </form>
+<% if current_user %>
+  <form action= "/survey/new" method= "get">
+    <input type="submit" value= "Create New Survey">
+  </form>
+<% end %>
 
 </div>

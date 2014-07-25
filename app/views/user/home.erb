@@ -1,2 +1,21 @@
 <div class="container">
+  <h1>Surveys Created by <%= @user.name %></h1>
+  <% if @surveys_created.empty? %>
+    You have not created any surveys yet.
+  <% else %>
+    <% @surveys_created.each do |survey| %>
+      <%= survey.name %><br>
+    <% end %>
+  <% end %>
+
+  <br><br>
+
+  <h1>Surveys Taken by <%= @user.name %></h1>
+  <% if @surveys_taken.empty? %>
+    You have not taken any surveys yet.
+  <% else %>
+   <% @surveys_taken.each do |survey| %>
+      <%= survey.name %><br>
+    <% end %>
+  <% end %>
 </div>
