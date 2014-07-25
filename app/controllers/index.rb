@@ -18,3 +18,18 @@ get '/surveys/:id' do
   erb :"surveys/show"
 end
 
+post '/results' do
+  # p params[:question]
+  user = User.find(session[:id])
+  results = params[:question]
+  results.each do |result|
+    user.responses.create(response: result)
+  end
+  redirect '/survey_results'
+end
+
+get '/survey_results'
+  user = User.find(session[:id])
+  @results = user.responses.all
+  erb :"surveys/show_results"
+end
