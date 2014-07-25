@@ -19,7 +19,7 @@
 </head>
 <body>
   <% if current_user %>
-    <p>Welcome, <a href="/user/home"><%= @user.name %></a> - <a href="/">Home</a> - <a href="/user/log_out">Log Out</a></p>
+    <p>Welcome, <a href="/user/home"><%= @user.name %></a> - <a href="/">Home</a> - <a href="/user/logout">Log Out</a></p>
   <% else %>
     <p><a href="/">Home</a> - <a href="/user/login_signup">Log In / Sign Up</a></p>
   <% end %>
