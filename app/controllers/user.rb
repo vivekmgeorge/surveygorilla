@@ -18,9 +18,8 @@ end
 # will redirect a user page to homepage afte signing up
 post "/user/new" do
   @user = User.create(params[:user])
-  if @user && @user.authenticate(params[:password])
+  if @user && @user.authenticate(params[:user][:password])
     session[:user_id] = @user.id
-    p "$" * 20
     redirect "/user/home"
   else
     redirect "/user/login_signup"
