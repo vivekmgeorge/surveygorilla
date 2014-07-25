@@ -1,0 +1,28 @@
+
+
+<% if logged_in? %>
+
+  <form action="/survey" method="post">
+
+    <input type="text" placeholder="name of your survey" name="survey[title]">
+    <br><br>
+    <input type="text" placeholder="question" name="survey[question]">
+    <br><br>
+    <input type="text" placeholder="choice 1" name="survey[choice1]">
+    <br><br>
+    <input type="text" placeholder="choice 2" name="survey[choice2]">
+    <br><br>
+    <input type="text" placeholder="choice 3" name="survey[choice3]">
+    <br><br>
+
+    <input type="submit" value="submit">
+  </form>
+
+<% else %>
+
+  <h2>Log in fool</h2>
+
+<% end %>
+
+
+
