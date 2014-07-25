@@ -1,8 +1,7 @@
 <h1>Taking <%= @survey.name %></h1>
 
-
   <form action="/results" method="post" class='pussy'>
-  # <% @survey.questions.each do |question| %>
+  <% @survey.questions.each do |question| %>
   <strong>Question:</strong> <%= question.question %>
 
     <select name="question[<%= question.id %>]">
