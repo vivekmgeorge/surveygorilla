@@ -5,11 +5,9 @@ get '/' do
 end
 
 post "/surveys" do
-  p params
   @user = User.find(session[:user_id])
   survey = @user.surveys.create(params[:survey])
   survey.questions.create(params[:question])
-
   redirect '/'
 end
 
@@ -24,21 +22,26 @@ get '/surveys/:id' do
   erb :"surveys/show"
 end
 
-post '/results' do
+post '/surveys/:id/results' do
   user = User.find(session[:user_id])
   results = params[:question]
 
   results.each do |question_id, answer|
     user.responses.create(response: answer, question_id: question_id)
   end
-  redirect '/survey_results'
+  redirect "/surveys/#{params[:id]}/results"
 end
 
-get '/survey_results' do
+get '/surveys/:id/results' do
   user = User.find(session[:user_id])
   @results = user.responses
   p "XXXXXXXXXXXXX"
   p @results
   p "XXXXXXXXXXXXX"
   erb :"surveys/show_results"
+end
+
+delete '/surveys/:id' do
+  Survey.find(params[:id]).destroy
+  redirect "/user/home"
 end
