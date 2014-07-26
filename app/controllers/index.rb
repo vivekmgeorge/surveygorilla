@@ -5,10 +5,10 @@ get '/' do
 end
 
 post "/surveys" do
-  @info = params[:survey]
-  survey = Survey.create(name: @info[:title])
-  survey.questions.create(question: @info[:question], choice1: @info[:choice1],
-    choice2: @info[:choice2], choice3: @info[:choice3] )
+  p params
+  @user = User.find(session[:user_id])
+  survey = @user.surveys.create(params[:survey])
+  survey.questions.create(params[:question])
 
   redirect '/'
 end

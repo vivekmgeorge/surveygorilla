@@ -1,11 +1,29 @@
-// $(document).ready(function() {
-//   // This is called after the document has loaded in its entirety
-//   // This guarantees that any elements we bind to will exist on the page
-//   // when we try to bind to them
+$(document).ready(function() {
+  increment = 1;
 
-//   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  $('#addForm').click(function() {
+    var newEl = $('.forms').last().clone()
+    var newQuestionNumber = newEl.data('question') + 1
+    newEl.attr('data-question', newQuestionNumber)
+    $('.new_questions').append(newEl)
+    increment ++;
+  });
 
-//   $('.resultButton').click(function(){
-//       $('.pussy').submit();
-//   });
+  $('#submitButton').click(function(e) {
+    e.preventDefault();
+    var form = $(".surveyForm").serialize()
+    console.log(form);
+    $.ajax({
+      url: "/surveys",
+      data : $("#forms").serialize(),
+      type : "POST"
+    }).success(function(response){
+      console.log("success");
+    }).fail(function(response){
+      console.log("fail");
+    });
+  });
+});
+
 // });
+
