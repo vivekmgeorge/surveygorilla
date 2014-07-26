@@ -4,7 +4,7 @@
     You have not created any surveys yet.
   <% else %>
     <% @surveys_created.each do |survey| %>
-      <%= survey.name %><br>
+      <a href="/surveys/<%= survey.id %>"><%= survey.name %></a><br>
     <% end %>
   <% end %>
 
@@ -15,7 +15,7 @@
     You have not taken any surveys yet.
   <% else %>
    <% @surveys_taken.each do |survey| %>
-      <%= survey.name %><br>
+      <a href="/surveys/<%= survey.id %>/results"><%= survey.name %></a><br>
     <% end %>
   <% end %>
 </div>

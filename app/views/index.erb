@@ -3,14 +3,14 @@
   <h1>Welcome to Survey Gorilla!</h1>
   <% @survey.each do |survey| %>
     <% if current_user %>
-      <p><a href= "/survey/<%= survey.id %>"> <%= survey.name %></a></p>
+      <p><a href= "/surveys/<%= survey.id %>"> <%= survey.name %></a></p>
     <% else %>
        <p><a href= "/user/login_signup"> <%= survey.name %></a></p>
     <% end %>
   <% end %>
 
 <% if current_user %>
-  <form action= "/survey/new" method= "get">
+  <form action= "/surveys/new" method= "get">
     <input type="submit" value= "Create New Survey">
   </form>
 <% end %>

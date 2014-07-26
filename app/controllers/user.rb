@@ -7,7 +7,7 @@ end
 # will direct the user to their homepage after signing in
 post "/user" do
   @user = User.find_by(email: params[:user][:email])
-  if @user && @user.authenticate(password: params[:user][:password])
+  if @user && @user.authenticate(params[:user][:password])
     session[:user_id] = @user.id
     redirect "/user/home"
   else
@@ -45,7 +45,4 @@ get "/user/home" do
   erb :"user/home"
 end
 
-# delete '/survey/:id' do
-#   Survey.find(params[:id]).destroy
-#   redirect "/user/home"
-# end
+
