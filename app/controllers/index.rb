@@ -6,9 +6,12 @@ end
 
 post "/surveys" do
   @user = User.find(session[:user_id])
-  survey = @user.surveys.create(params[:survey])
-  survey.questions.create(params[:question])
-  redirect '/'
+  @survey = @user.surveys.create(params[:survey])
+  @survey.questions << Question.create(params[:question])
+  @questions = @survey.questions
+  # question.create()
+  # redirect '/surveys/new'
+  erb :'surveys/_question', :layout => false
 end
 
 get '/surveys/new' do
