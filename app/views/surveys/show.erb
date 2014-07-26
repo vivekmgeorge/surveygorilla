@@ -1,6 +1,6 @@
 <h1>Taking <%= @survey.name %></h1>
 
-  <form action="/results" method="post" class='pussy'>
+  <form action="/surveys/<%= @survey.id %>/results" method="post" class='pussy'>
   <% @survey.questions.each do |question| %>
   <strong>Question:</strong> <%= question.question %>
 
@@ -14,5 +14,13 @@
   <% end %>
 
   <input type="submit" value="submit it" class='resultButton'>
+  </form>
+  <br>
+  <% if @survey.user_id == session[:user_id] %>
+  <form action="/surveys/<%= @survey.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Survey">
+  <% end %>
+
   </form>
 
