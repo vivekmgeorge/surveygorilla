@@ -5,13 +5,18 @@ get '/' do
 end
 
 post "/surveys" do
-  @user = User.find(session[:user_id])
-  @survey = @user.surveys.create(params[:survey])
-  @survey.questions << Question.create(params[:question])
-  @questions = @survey.questions
+  # @user = User.find(session[:user_id])
+  # @survey = @user.surveys.create(params[:survey])
+  p "*" * 50
+  p params[:survey]
+  p params[:question]
+  p params[:num_questions]
+  p "*" * 50
+  # @questions = @survey.questions.create(params[:question])
+  # @questions = @survey.questions
   # question.create()
   # redirect '/surveys/new'
-  erb :'surveys/_question', :layout => false
+  # erb :'surveys/_question', :layout => false
 end
 
 get '/surveys/new' do
@@ -36,11 +41,8 @@ post '/surveys/:id/results' do
 end
 
 get '/surveys/:id/results' do
-  user = User.find(session[:user_id])
-  @results = user.responses
-  p "XXXXXXXXXXXXX"
-  p @results
-  p "XXXXXXXXXXXXX"
+  @user = User.find(session[:user_id])
+  @results = @user.responses
   erb :"surveys/show_results"
 end
 

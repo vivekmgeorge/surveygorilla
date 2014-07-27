@@ -1,6 +1,6 @@
 .container {
   margin: 20px auto;
-  width: 600px;
+  width: 800px;
   padding: 0px 20px 20px 20px;
   border: 1px dotted black;
 }
@@ -13,3 +13,7 @@ body {
   padding: 15px;
 }
 
+form {
+	display: inline;
+	margin: 5px;
+}
