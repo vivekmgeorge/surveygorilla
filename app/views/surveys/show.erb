@@ -1,6 +1,8 @@
+<div class="container">
+
 <h1>Taking <%= @survey.name %></h1>
 
-  <form action="/surveys/<%= @survey.id %>/results" method="post" class='pussy'>
+  <form action="/surveys/<%= @survey.id %>/results" method="post">
   <% @survey.questions.each do |question| %>
   <strong>Question:</strong> <%= question.question %>
 
@@ -8,6 +10,7 @@
       <option value="<%= question.choice1 %>"><%= question.choice1 %></option>
       <option value="<%= question.choice2 %>"><%= question.choice2 %></option>
       <option value="<%= question.choice3 %>"><%= question.choice3 %></option>
+      <option value="<%= question.choice4 %>"><%= question.choice4 %></option>
     </select>
   <br><br>
 
@@ -15,7 +18,7 @@
 
   <input type="submit" value="submit it" class='resultButton'>
   </form>
-  <br>
+  <br><br><br>
   <% if @survey.user_id == session[:user_id] %>
   <form action="/surveys/<%= @survey.id %>" method="post">
     <input type="hidden" name="_method" value="delete">
@@ -24,3 +27,4 @@
 
   </form>
 
+</div>

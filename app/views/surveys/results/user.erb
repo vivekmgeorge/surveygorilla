@@ -1,0 +1,19 @@
+<div class="container">
+	<h1>Your Responses</h1>
+
+	<% @responses.each_with_index do |response, index| %>
+	<strong><%= (index + 1).to_s + ". " + question_by_id(response.question_id)  %></strong><br>
+	<%= response.response  %><br><br>
+	<% end %>
+	<br>
+
+	<form action="/surveys/<%= @survey.id %>/results/all" method="get">
+		<input type="submit" value="Survey Results">
+	</form>
+
+
+	<form action="/" method="get">
+		<input type="submit" value="Take Another Survey">
+	</form>
+
+</div>

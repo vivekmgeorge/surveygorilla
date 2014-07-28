@@ -1,26 +1,27 @@
-
-
+<div class="container">
 <% if logged_in? %>
-
-  <form action="/surveys" method="post">
-
+  <form action="/surveys" method="post" class='surveyForm'>
+    <h1>Name of Survey:</h1>
     <input type="text" placeholder="name of your survey" name="survey[name]">
-    <br><br>
-    <input type="text" placeholder="question" name="question[question]">
-    <br><br>
-    <input type="text" placeholder="choice 1" name="question[choice1]">
-    <br><br>
-    <input type="text" placeholder="choice 2" name="question[choice2]">
-    <br><br>
-    <input type="text" placeholder="choice 3" name="question[choice3]">
-    <br><br>
-
-    <input type="submit" value="submit">
+    <h3>Questions:</h3>
+    1. <br><br>
+    <div class="forms" data-question="1">
+      <input type="text" size="75" placeholder="question" name="question1[question]">
+      <br><br>
+      <input type="text" size="75" placeholder="choice 1" name="question1[choice1]">
+      <br><br>
+      <input type="text" size="75" placeholder="choice 2" name="question1[choice2]">
+      <br><br>
+      <input type="text" size="75" placeholder="choice 3" name="question1[choice3]">
+      <br><br>
+    </div>
+    <div class="new_questions">
+    </div>
+    <input type="hidden" id="num_questions" name="num_questions" value="">
+    <input id="submitButton" type="submit" value="submit">
   </form>
 
-  <br><br>
-
-
+    <button id="addForm">Add a Question</button><br><br>
 
 
 
@@ -32,3 +33,4 @@
 
 
 
+</div>

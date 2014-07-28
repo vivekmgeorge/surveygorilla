@@ -1,0 +1,26 @@
+<div class="container">
+	<h1>Your Responses</h1>
+
+	<% @questions.each_with_index do |question, index| %>
+	<div id="<%= "chart_" + (index + 1).to_s %>" class="chart"
+		data-question="<%= (index + 1).to_s + ". " + question.question %>"
+		data-choiceone="<%= question.choice1 %>"
+		data-choiceonepercentage = "<%= percentage_of_responses(question.id, question.choice1) %>"
+		data-choicetwo="<%= question.choice2 %>"
+		data-choicetwopercentage = "<%= percentage_of_responses(question.id, question.choice2) %>"
+		data-choiceThree="<%= question.choice3 %>"
+		data-choicethreepercentage = "<%= percentage_of_responses(question.id, question.choice3) %>"
+		data-choiceFour="<%= question.choice4 %>"
+		data-choicefourpercentage = "<%= percentage_of_responses(question.id, question.choice4) %>"
+		></div>
+	<% end %>
+
+	<span class="hidden" data-responses="<%= @survey_length %>"></span>
+
+	<br>
+
+	<form action="/" method="get">
+		<input type="submit" value="Take Another Survey">
+	</form>
+
+</div>

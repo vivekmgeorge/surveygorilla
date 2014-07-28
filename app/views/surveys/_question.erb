@@ -1,0 +1,6 @@
+<% @questions.each_with_index do |question, index| %>
+<%= (index+1).to_s + ". " + question.question %><br>
+<%= "a. " + question.choice1 %><br>
+<%= "b. " + question.choice2 %><br>
+<%= "c. " + question.choice3 %><br>
+<% end %>
