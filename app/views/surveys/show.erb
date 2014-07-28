@@ -2,7 +2,7 @@
 
 <h1>Taking <%= @survey.name %></h1>
 
-  <form action="/surveys/<%= @survey.id %>/results" method="post" class='pussy'>
+  <form action="/surveys/<%= @survey.id %>/results" method="post">
   <% @survey.questions.each do |question| %>
   <strong>Question:</strong> <%= question.question %>
 

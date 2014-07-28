@@ -1,13 +1,15 @@
 <div class="container">
 
   <h1>Welcome to Survey Gorilla!</h1>
-  <% @survey.each do |survey| %>
+  <% @survey.each_with_index do |survey, index| %>
     <% if current_user %>
-      <p><a href= "/surveys/<%= survey.id %>"> <%= survey.name %></a></p>
+      <p><a id="survey_<%= index %>" href="/surveys/<%= survey.id %>"> <%= survey.name %></a></p>
     <% else %>
        <p><a href= "/user/login_signup"> <%= survey.name %></a></p>
     <% end %>
   <% end %>
+
+  <span class="hidden_survey_length" data-surveys="<%= @survey.length %>"></span>
 
 
 

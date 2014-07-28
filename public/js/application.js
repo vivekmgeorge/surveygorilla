@@ -5,6 +5,51 @@
   var string4 = "[choice2]'><br><br><input type='text' size='75' placeholder='choice 3' name='question"
   var string5 = "[choice3]'><br><br></div>"
 
+var highCharts = function(chart_id, question, choiceone, choicetwo, choicethree, choicefour, choiceonepercentage, choicetwopercentage, choicethreepercentage, choicefourpercentage) {
+    $(chart_id).highcharts({
+      chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: 1,//null,
+          plotShadow: false
+      },
+      title: {
+          text: question
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+          pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true,
+                  format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                  style: {
+                      color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                  }
+              }
+          }
+      },
+      series: [{
+          type: 'pie',
+          name: 'Browser share',
+          data: [
+              [ choiceone,   choiceonepercentage],
+              [ choicetwo,   choicetwopercentage],
+              {
+                  name: choicethree,
+                  y: choicethreepercentage //,
+                  // sliced: true,
+                  // selected: true
+              },
+              [choicefour,    choicefourpercentage]
+          ]
+      }]
+  });
+
+}
+
 $(document).ready(function() {
 
   $('#addForm').on("click", function(){
@@ -13,6 +58,20 @@ $(document).ready(function() {
     $('#num_questions').attr('value', increment)
     increment ++
   })
+
+  for (var i=1; i<= $('.hidden').data("responses"); i++) {
+    id = "#chart_"+i
+    highCharts(id, $(id).data("question"), $(id).data("choiceone"), $(id).data("choicetwo"), $(id).data("choicethree"),$(id).data("choicefour"),
+      $(id).data("choiceonepercentage"), $(id).data("choicetwopercentage"), $(id).data("choicethreepercentage"), $(id).data("choicefourpercentage"))
+  }
+
+  // // to alert user if they had already taken the survey
+  // for (var i=1; i<= $('.hidden_survey_length').data("surveys"); i++) {
+  //   $('#survey_' + i).on("click", function(e) {
+  //     e.preventDefault();
+
+  //   })
+  // }
 
   // $('#test').click(function(e) {
   //   e.preventDefault();

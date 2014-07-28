@@ -30,19 +30,28 @@ get '/surveys/:id' do
 end
 
 post '/surveys/:id/results' do
-  user = User.find(session[:user_id])
+  @user = User.find(session[:user_id])
+  @survey = Survey.find(params[:id])
+  @responses = []
   results = params[:question]
-
   results.each do |question_id, answer|
-    user.responses.create(response: answer, question_id: question_id)
+    @responses << @user.responses.create(response: answer, question_id: question_id)
   end
-  redirect "/surveys/#{params[:id]}/results"
+  erb :"surveys/results/user"
 end
 
-get '/surveys/:id/results' do
+get '/surveys/:id/results/user' do
   @user = User.find(session[:user_id])
-  @results = @user.responses
-  erb :"surveys/show_results"
+  @survey = Survey.find(params[:id])
+  @responses = @survey.responses.where(user_id: @user.id)
+  erb :"surveys/results/user"
+end
+
+get '/surveys/:id/results/all' do
+  @survey = Survey.find(params[:id])
+  @survey_length = @survey.questions.length
+  @questions = @survey.questions
+  erb :"surveys/results/all"
 end
 
 delete '/surveys/:id' do
